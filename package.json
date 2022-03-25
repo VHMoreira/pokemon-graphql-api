@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Vitor Henrique <vhsouzaeng@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+  },
   "devDependencies": {
     "git-commit-msg-linter": "^4.1.1",
     "ts-node-dev": "^1.1.8",
