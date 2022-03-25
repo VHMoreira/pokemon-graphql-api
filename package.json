@@ -1,0 +1,7 @@
+{
+  "name": "poke-graphql-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Vitor Henrique <vhsouzaeng@gmail.com>",
+  "license": "MIT"
+}
