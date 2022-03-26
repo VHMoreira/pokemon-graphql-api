@@ -1,5 +1,5 @@
 import { RESTDataSource } from "apollo-datasource-rest"
-import { Pokemon, Species } from "src/models"
+import { Pokemon, Species } from "../models"
 
 type GetPokemonsAPIResponse = {
     count: number

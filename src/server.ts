@@ -1,8 +1,8 @@
 import { ApolloServer } from "apollo-server"
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core"
-import { PokemonSchema } from './schemas'
-import { PokemonResolvers } from "./resolvers"
-import { PokemonsAPI } from "./datasource"
+import { PokemonSchema } from './domains/pokemon/schemas'
+import { PokemonResolvers } from "./domains/pokemon/resolvers"
+import { PokemonsAPI } from "./domains/pokemon/datasource"
 
 const server = new ApolloServer({
     typeDefs: [
