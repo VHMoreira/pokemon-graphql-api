@@ -19,9 +19,19 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
     }
     async getPokemons(): Promise<Pokemon[]> {
         const { results } = await this.get<GetPokemonsAPIResponse>('/pokemon')
-        const pokemons = results.map(
-            ({ name }) => this.get<Pokemon>(`/pokemon/${name}`)
-        )
+        const pokemons = results.map(async ({ name }) => {
+            const pokemon = await this.get<Pokemon>(`/pokemon/${name}`)
+            return {
+                ...pokemon,
+                sprites: {
+                    ...pokemon.sprites,
+                    other: {
+                        ...pokemon.sprites.other,
+                        official_artwork: pokemon.sprites.other['official-artwork']
+                    }
+                }
+            }
+        })
         return Promise.all(pokemons)
     }
 }
