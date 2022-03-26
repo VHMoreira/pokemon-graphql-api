@@ -1,3 +1,5 @@
+import { Species } from "./species"
+
 export interface Pokemon {
     id: number | string
     name: string
@@ -28,11 +30,6 @@ export interface MoveInfo {
 }
 
 export interface Move {
-    name: string
-    url: string
-}
-
-export interface Species {
     name: string
     url: string
 }
