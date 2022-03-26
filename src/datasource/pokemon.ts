@@ -1,5 +1,5 @@
 import { RESTDataSource } from "apollo-datasource-rest"
-import { Pokemon } from "src/models"
+import { Pokemon, Species } from "src/models"
 
 type GetPokemonsAPIResponse = {
     count: number
@@ -21,6 +21,7 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
         const { results } = await this.get<GetPokemonsAPIResponse>('/pokemon')
         const pokemons = results.map(async ({ name }) => {
             const pokemon = await this.get<Pokemon>(`/pokemon/${name}`)
+            const specie = await this.get<Species>(`/pokemon-species/${pokemon.species.name}`)
             return {
                 ...pokemon,
                 sprites: {
@@ -29,6 +30,10 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
                         ...pokemon.sprites.other,
                         official_artwork: pokemon.sprites.other['official-artwork']
                     }
+                },
+                species: {
+                    ...pokemon.species,
+                    ...specie
                 }
             }
         })

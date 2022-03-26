@@ -19,8 +19,37 @@ export const PokemonSchema = gql`
         move: Move
     }
 
-    type Species {
+    type Color {
         name: String
+    }
+
+    type EvolvesFromSpecies {
+        name: String
+    }
+
+    type EvolutionChain {
+        name: String
+    }
+
+    type Generation {
+        name: String
+    }
+
+    type Habitat {
+        name: String
+    }
+
+    type Species {
+        id: ID
+        name: String
+        is_baby: Boolean
+        is_legendary: Boolean
+        is_mythical: Boolean
+        color: Color
+        evolves_from_species: EvolvesFromSpecies
+        evolution_chain: EvolutionChain
+        habitat: Habitat
+        generation: Generation
     }
 
     type OfficialArtwork {
