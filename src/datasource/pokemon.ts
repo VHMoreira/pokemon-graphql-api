@@ -5,7 +5,7 @@ type GetPokemonsAPIResponse = {
     count: number
     next: string | null,
     previous: string | null,
-    results: Pokemon[]
+    results: Pick<Pokemon, 'name'>[]
 }
 
 interface IPokemonAPI {
