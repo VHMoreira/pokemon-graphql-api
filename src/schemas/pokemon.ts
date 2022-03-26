@@ -3,7 +3,7 @@ import { gql } from 'apollo-server'
 export const PokemonSchema = gql`
     type Pokemon {
         id: ID!
-        nome: String!
+        name: String!
     }
 
     type Query {
