@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server"
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core"
-import { PokemonSchema } from './domains/pokemon/schema/pokemon'
+import { PokemonSchema } from './schemas'
 
 const server = new ApolloServer({
     typeDefs: [
@@ -13,5 +13,6 @@ const server = new ApolloServer({
 })
 
 server.listen().then(({ url }) => {
+    console.clear()
     console.log(`🚀 Server running at ${url}`)
 })
