@@ -4,6 +4,7 @@ import { PokemonSchema } from './domains/pokemon/schemas'
 import { PokemonResolvers } from "./domains/pokemon/resolvers"
 import { PokemonsAPI } from "./domains/pokemon/datasource"
 import EnvironmentVariables from './configs/environment'
+import { NoSchemaIntrospectionCustomRule } from "graphql"
 
 const server = new ApolloServer({
     typeDefs: [
@@ -20,7 +21,8 @@ const server = new ApolloServer({
     plugins: [
         ApolloServerPluginLandingPageGraphQLPlayground
     ],
-    introspection: false
+    introspection: false,
+    validationRules: [NoSchemaIntrospectionCustomRule]
 })
 
 server.listen({ port: EnvironmentVariables.PORT }).then(({ url }) => {
