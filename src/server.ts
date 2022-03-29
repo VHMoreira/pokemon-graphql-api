@@ -3,6 +3,7 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 import { PokemonSchema } from './domains/pokemon/schemas'
 import { PokemonResolvers } from "./domains/pokemon/resolvers"
 import { PokemonsAPI } from "./domains/pokemon/datasource"
+import EnvironmentVariables from './configs/environment'
 
 const server = new ApolloServer({
     typeDefs: [
@@ -21,7 +22,7 @@ const server = new ApolloServer({
     ]
 })
 
-server.listen().then(({ url }) => {
+server.listen({ port: EnvironmentVariables.PORT }).then(({ url }) => {
     console.clear()
     console.log(`🚀 Server running at ${url}`)
 })
