@@ -21,7 +21,7 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
         const { results } = await this.get<GetPokemonsAPIResponse>('/pokemon')
         const pokemons = results.map(async ({ name }) => {
             const pokemon = await this.get<Pokemon>(`/pokemon/${name}`)
-            const specie = await this.get<Species>(`/pokemon-species/${pokemon.species.name}`)
+            const species = await this.get<Species>(`/pokemon-species/${pokemon.species.name}`)
             return {
                 ...pokemon,
                 sprites: {
@@ -33,7 +33,7 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
                 },
                 species: {
                     ...pokemon.species,
-                    ...specie
+                    ...species
                 }
             }
         })
