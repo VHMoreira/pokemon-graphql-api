@@ -19,7 +19,8 @@ const server = new ApolloServer({
     },
     plugins: [
         ApolloServerPluginLandingPageGraphQLPlayground
-    ]
+    ],
+    introspection: false
 })
 
 server.listen({ port: EnvironmentVariables.PORT }).then(({ url }) => {
