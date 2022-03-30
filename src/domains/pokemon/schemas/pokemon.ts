@@ -111,6 +111,6 @@ export const PokemonSchema = gql`
     }
 
     type Query {
-        pokemons: [Pokemon]
+        pokemons(initial: ID, limit: ID): [Pokemon]
     }
 `

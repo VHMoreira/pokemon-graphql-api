@@ -8,8 +8,15 @@ type GetPokemonsAPIResponse = {
     results: Pick<Pokemon, 'name'>[]
 }
 
-interface IPokemonAPI {
-    getPokemons(): Promise<Pokemon[]>
+export type GetPokemonsParams = {
+    offset?: string | number
+    limit?: string | number
+}
+
+export type IGetPokemons = (params: GetPokemonsParams) => Promise<Pokemon[]>
+
+export interface IPokemonAPI {
+    getPokemons: IGetPokemons
 }
 
 export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
@@ -17,8 +24,11 @@ export class PokemonsAPI extends RESTDataSource implements IPokemonAPI {
         super()
         this.baseURL = 'https://pokeapi.co/api/v2/'
     }
-    async getPokemons(): Promise<Pokemon[]> {
-        const { results } = await this.get<GetPokemonsAPIResponse>('/pokemon')
+    async getPokemons({ offset, limit }: GetPokemonsParams): Promise<Pokemon[]> {
+        const { results } = await this.get<GetPokemonsAPIResponse>(`/pokemon`, {
+            offset,
+            limit
+        })
         const pokemons = results.map(async ({ name }) => {
             const pokemon = await this.get<Pokemon>(`/pokemon/${name}`)
             const species = await this.get<Species>(`/pokemon-species/${pokemon.species.name}`)
